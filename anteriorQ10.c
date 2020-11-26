@@ -24,15 +24,15 @@ void print(Tree T, int h) {
 }
 // -- tipos e funções definidos na Questão 2
 
-Tree make(int v[], int i, int j) {
-    if( i>j ) return NULL;
-    int m = (i+j)/2;
-    return tree(make(v, o1 , o2 ),v[m],make(v, o3 , o4 ));
+void leaves(Tree T){
+    if(T==NULL) return;
+    leaves(T->left);
+    if(T->left==T->right) printf("%d\n",T->item);
+    leaves(T->right);
 }
 
 int main(void) {
-    int v[7] = {10,20,30,40,50,60,70};
-    Tree A = make(v,0,6);
-    print(A,0);
+    Tree A = tree(tree(tree(NULL,1,NULL),2,tree(NULL,3,NULL)),4,tree(NULL,5,tree(NULL,6,NULL)));
+    leaves(A); // deve exibir 1 3 6
     return 0;
 }

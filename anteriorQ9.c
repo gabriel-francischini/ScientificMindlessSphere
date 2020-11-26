@@ -24,15 +24,17 @@ void print(Tree T, int h) {
 }
 // -- tipos e funções definidos na Questão 2
 
-Tree make(int v[], int i, int j) {
-    if( i>j ) return NULL;
-    int m = (i+j)/2;
-    return tree(make(v, o1 , o2 ),v[m],make(v, o3 , o4 ));
+int minimum(Tree *T) {
+    if( *T == NULL ) abort();
+    if( (*T)->left == NULL ) {
+        int x = (*T)->item;
+        return x;
+    }
+    return minimum(&(*T)->left);
 }
 
 int main(void) {
-    int v[7] = {10,20,30,40,50,60,70};
-    Tree A = make(v,0,6);
-    print(A,0);
+    Tree A = tree(tree(tree(NULL,1,tree(NULL,2,NULL)),3,NULL),4,tree(NULL,5,tree(NULL,6,NULL)));
+    printf("Minimum item: %d\n",minimum(A)); // deve exibir Minimum item: 1
     return 0;
 }

@@ -24,15 +24,15 @@ void print(Tree T, int h) {
 }
 // -- tipos e funções definidos na Questão 2
 
-Tree make(int v[], int i, int j) {
-    if( i>j ) return NULL;
-    int m = (i+j)/2;
-    return tree(make(v, o1 , o2 ),v[m],make(v, o3 , o4 ));
+Tree mirror(Tree T){
+    if(T==NULL) return NULL;
+    return tree(mirror(T->right),T->item,(mirror(T->left)));
 }
 
 int main(void) {
-    int v[7] = {10,20,30,40,50,60,70};
-    Tree A = make(v,0,6);
+    Tree A = tree(tree(tree(NULL,1,NULL),2,NULL),3,tree(NULL,4,NULL));
     print(A,0);
+    puts("-------");
+    print(mirror(A),0);
     return 0;
 }
